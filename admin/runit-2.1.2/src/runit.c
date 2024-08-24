@@ -33,13 +33,17 @@ int sigi =0;
 
 void sig_cont_handler (void) {
   sigc++;
-  write(selfpipe[1], "", 1);
+  if (0 > write(selfpipe[1], "", 1)) {
+    // failed
+  }
 }
 void sig_int_handler (void) {
   sigi++;
-  write(selfpipe[1], "", 1);
+  if (0 > write(selfpipe[1], "", 1)) {
+    // failed
+  }
 }
-void sig_child_handler (void) { write(selfpipe[1], "", 1); }
+void sig_child_handler (void) { if(0 > write(selfpipe[1], "", 1)) {}; return;}
 
 int main (int argc, const char * const *argv, char * const *envp) {
   const char * prog[2];
@@ -201,7 +205,8 @@ int main (int argc, const char * const *argv, char * const *envp) {
       }
       if (child != 0) {
         /* collect terminated children */
-        write(selfpipe[1], "", 1);
+        if (0 > write(selfpipe[1], "", 1)) {
+        }
         continue;
       }
 

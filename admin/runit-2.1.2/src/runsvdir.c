@@ -251,7 +251,7 @@ int main(int argc, char **argv) {
 
     if (rplog)
       if (taia_less(&now, &stamplog) == 0) {
-        write(logpipe[1], ".", 1);
+        if (0 > write(logpipe[1], ".", 1)) {}
         taia_uint(&deadline, 900);
         taia_add(&stamplog, &now, &deadline);
       }
