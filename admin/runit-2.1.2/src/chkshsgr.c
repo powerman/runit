@@ -1,6 +1,8 @@
 /* Public domain. */
 
 #include <unistd.h>
+#include <sys/types.h>
+#include <grp.h>
 
 int main()
 {

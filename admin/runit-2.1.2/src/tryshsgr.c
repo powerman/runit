@@ -1,5 +1,9 @@
 /* Public domain. */
 
+#include <sys/types.h>
+#include <unistd.h>
+#include <grp.h>
+
 int main()
 {
   short x[4];
